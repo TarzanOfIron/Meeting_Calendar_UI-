@@ -1,7 +1,7 @@
 const Dashboard = () => {
   return (
-    <div className="m-3 w-100">
-      <h1 className="my-3">Dashboard Body</h1>
+    <div className="w-100 bg-white p-3">
+      <h1 className="mb-3">Dashboard Body</h1>
       <form>
         <div className="form-group my-1">
           <label htmlFor="title">Meeting Title</label>

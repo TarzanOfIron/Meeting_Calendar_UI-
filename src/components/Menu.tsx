@@ -1,15 +1,16 @@
 
 
 const dashItems = [
-  { id: 1, title: " Dashboard", className: "bi bi-speedometer list-group-item mx-1 " }, // bi
-  { id: 2, title: " Meetings", className: "bi bi-webcam-fill list-group-item mx-1" },
-  { id: 3, title: " Users", className: "bi bi-people-fill list-group-item mx-1" },
-  { id: 4, title: " Calendar", className: "bi bi-calendar-day-fill list-group-item mx-1" },
+  { id: 1, title: " Dashboard", className: "bi bi-speedometer list-group-item" }, // bi
+  { id: 2, title: " Meetings", className: "bi bi-webcam-fill list-group-item" },
+  { id: 3, title: " Users", className: "bi bi-people-fill list-group-item" },
+  { id: 4, title: " Calendar", className: "bi bi-calendar-day-fill list-group-item" },
 ];
 
 const Menu = () => {
   return (
     <div
+    className="mx-3 ms-auto"
       style={{ fontSize: "1.25rem", width: "250px" }}
     >
       <ul className="list-group">
