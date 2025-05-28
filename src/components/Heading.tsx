@@ -1,5 +1,4 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { createElement } from "react";
 
 const tabs = ["Home", "About", "Services", "Contact"];
 
