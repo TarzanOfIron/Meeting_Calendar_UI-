@@ -6,9 +6,9 @@ import Menu from "./components/Menu";
 
 function App() {
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Heading></Heading>
-      <div className="d-flex pt-5" style={{background: "#f2f2f2"}}>
+      <div className="d-flex pt-5 flex-fill" style={{ background: "#f2f2f2" }}>
         <div className="col col-4">
           <Menu></Menu>
         </div>
@@ -18,7 +18,7 @@ function App() {
         </div>
       </div>
       <Footer></Footer>
-    </>
+    </div>
   );
 }
 

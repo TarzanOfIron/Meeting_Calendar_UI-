@@ -1,11 +1,11 @@
-
-
 const Footer = () => {
   return (
-    <div>
-      <h1 className='footer fixed-bottom'>Footer</h1>
+    <div className="d-flex bg-dark text-light">
+      <i className="bi bi-c-circle mx-1 mx-auto">
+        2024 Meeting Calendar. All rights reserved.
+      </i>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
