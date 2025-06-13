@@ -7,7 +7,6 @@ const Heading = () => {
     <div className="bg-dark d-flex">
       <i
         className="bi bi-calendar4-week m-3"
-        style={{ fontSize: "2rem", color: "white" }}
       ></i>
       {tabs.map((tab) => (
         <a
@@ -18,7 +17,6 @@ const Heading = () => {
           {tab}
         </a>
       ))}
-
       <div className="d-flex my-auto ms-auto">
         <i
           className="bi bi-person-circle"

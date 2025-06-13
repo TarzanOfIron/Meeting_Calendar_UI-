@@ -1,7 +1,7 @@
 
 
 const dashItems = [
-  { id: 1, title: " Dashboard", className: "bi bi-speedometer list-group-item" }, // bi
+  { id: 1, title: " Dashboard", className: "bi bi-speedometer list-group-item" }, 
   { id: 2, title: " Meetings", className: "bi bi-webcam-fill list-group-item" },
   { id: 3, title: " Users", className: "bi bi-people-fill list-group-item" },
   { id: 4, title: " Calendar", className: "bi bi-calendar-day-fill list-group-item" },
