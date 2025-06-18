@@ -25,35 +25,39 @@ const Dashboard = ({ addMeeting, getNextMeetingId }: props) => {
 
   const handleEvent = (event: FormEvent) => {
     event.preventDefault();
-    if (titleRef.current !== null) {
-      meeting.title = titleRef.current.value;
+    if (titleRef.current === null ) {
+      alert("Title is required")
+      return;
     }
-    if (dateRef.current !== null) {
-      meeting.date = dateRef.current.value;
+    if (dateRef.current === null) {
+      alert("Date is required")
+      return;
     }
-    if (timeRef.current !== null) {
-      meeting.time = timeRef.current.value;
+    if (timeRef.current === null) {
+      alert("Time is required")
+      return;
     }
-    if (priorityRef.current !== null) {
-      meeting.priority = priorityRef.current.value;
+    if (priorityRef.current === null) {
+      alert("Priority is required")
+      return;
     }
-    if (participantsRef.current !== null) {
-      meeting.participants = participantsRef.current.value;
+    if (participantsRef.current === null) {
+      alert("Participants is required")
+      return;
     }
-    if (priorityRef.current !== null) {
-      meeting.priority = priorityRef.current.value as "Low" | "Medium" | "High";
-    }
-    if (participantsRef.current !== null) {
-      meeting.participants = participantsRef.current.value;
-    }
-
-    console.log(getNextMeetingId)
-
-
+  
+    
     meeting.id = getNextMeetingId();
+    meeting.title = titleRef.current.value;
+    meeting.date = dateRef.current.value;
+    meeting.time = timeRef.current.value;
+    meeting.priority = priorityRef.current.value as "Low" | "Medium" | "High";
+    meeting.participants = participantsRef.current.value;
 
     addMeeting(meeting);
   };
+
+  
 
   return (
     <div className="w-100 bg-white p-3">
