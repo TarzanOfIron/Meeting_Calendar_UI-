@@ -1,6 +1,7 @@
 package com.springboot.backend.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
@@ -17,8 +18,10 @@ public record MeetingDto (
      @NotBlank
      String title,
      @NotBlank
+     @JsonFormat(pattern = "yyyy-MM-dd")
      LocalDate date,
      @NotBlank
+     @JsonFormat(pattern = "HH:mm")
      LocalTime time,
 
      String priority,

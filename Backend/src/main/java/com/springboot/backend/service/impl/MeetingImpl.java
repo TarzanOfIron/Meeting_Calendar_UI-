@@ -7,6 +7,8 @@ import com.springboot.backend.service.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -21,6 +23,13 @@ public class MeetingImpl implements MeetingService {
     @Override
     public MeetingDto createMeeting(MeetingDto meetingDto) {
         return meetingToMeetingDto(meetingRepository.save(meetingDtoToMeeting(meetingDto)));
+    }
+
+    @Override
+    public List<MeetingDto> findAllMeetings() {
+        List<MeetingDto> meetingDtos = new ArrayList<>();
+        meetingRepository.findAll().forEach(meeting -> meetingDtos.add(meetingToMeetingDto(meeting)));
+        return meetingDtos;
     }
 
     private static MeetingDto meetingToMeetingDto( Meeting savedMeeting) {
