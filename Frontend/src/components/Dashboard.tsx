@@ -1,5 +1,6 @@
 import { useRef, type FormEvent } from "react";
 import type { Meeting } from "../App";
+import axios from 'axios';
 
 
 interface props {
@@ -23,8 +24,10 @@ const Dashboard = ({ addMeeting, getNextMeetingId }: props) => {
     participants: "",
   };
 
-  const handleEvent = (event: FormEvent) => {
+  const handleEvent = async (event: FormEvent) => {
+
     event.preventDefault();
+
     if (titleRef.current === null ) {
       alert("Title is required")
       return;
@@ -46,7 +49,6 @@ const Dashboard = ({ addMeeting, getNextMeetingId }: props) => {
       return;
     }
   
-    
     meeting.id = getNextMeetingId();
     meeting.title = titleRef.current.value;
     meeting.date = dateRef.current.value;
@@ -54,7 +56,12 @@ const Dashboard = ({ addMeeting, getNextMeetingId }: props) => {
     meeting.priority = priorityRef.current.value as "Low" | "Medium" | "High";
     meeting.participants = participantsRef.current.value;
 
-    addMeeting(meeting);
+    //addMeeting(meeting);
+
+    try {
+      await axios.post()
+    }
+
   };
 
   
