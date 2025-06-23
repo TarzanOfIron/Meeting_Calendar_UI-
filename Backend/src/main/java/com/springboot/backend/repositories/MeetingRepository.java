@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface MeetingRepository extends CrudRepository<Meeting, Long> {
 
-    List<Meeting> findByExpiresAtAfter(LocalDate expires);
+    List<Meeting> findByDateAfter(LocalDate expires);
 
 }

@@ -7,8 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Builder
@@ -23,9 +23,11 @@ public class Meeting {
     private long id;
 
     @Column(nullable = false)
-    private Date date;
+    private String title;
     @Column(nullable = false)
-    private Time time;
+    private LocalDate date;
+    @Column(nullable = false)
+    private LocalTime time;
     @Column
     private String priority;
     private String participants;

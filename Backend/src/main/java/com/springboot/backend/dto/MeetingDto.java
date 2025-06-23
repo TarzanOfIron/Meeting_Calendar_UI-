@@ -4,19 +4,25 @@ package com.springboot.backend.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
-import java.sql.Time;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 @Builder
-public class MeetingDto {
+public record MeetingDto (
 
-    private long id;
+     long id,
 
-    @NotBlank
-    private Date date;
-    @NotBlank
-    private Time time;
-    
-    private String priority;
-    private String participants;
-}
+     @NotBlank
+     String title,
+     @NotBlank
+     LocalDate date,
+     @NotBlank
+     LocalTime time,
+
+     String priority,
+     String participants
+){}
+
+
