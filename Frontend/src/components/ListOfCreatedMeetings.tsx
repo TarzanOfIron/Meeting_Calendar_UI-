@@ -18,7 +18,7 @@ const ListOfCreatedMeetings = ({meetings, onRemoveMeeting, onLoadMeetings}: meet
         const response = await axios.get("http://localhost:8080/api/meetings");
         if (response.status === 200) {
           console.log("Fetched Meetings: ", response.data);
-          onLoadMeetings(response.data)
+          onLoadMeetings(response.data);
         } else {
           console.error("Unexpected response status: ")
         }

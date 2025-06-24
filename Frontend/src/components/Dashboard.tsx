@@ -4,9 +4,10 @@ import axios from "axios";
 
 interface props {
   getNextMeetingId: () => number;
+  addMeeting: (newMeeting: Meeting) => void;
 }
 
-const Dashboard = ({getNextMeetingId }: props) => {
+const Dashboard = ({getNextMeetingId, addMeeting }: props) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
@@ -44,8 +45,11 @@ const Dashboard = ({getNextMeetingId }: props) => {
     try {
       const response = await axios.post("http://localhost:8080/api/meetings", meeting);
       console.log("Meeting saved:", response.data)
+      console.log("Line 48");
+      addMeeting(response.data);
+      console.log("Line 50")
     } catch(error) {
-      console.error("Failed to save meeting: fasz")
+      console.error("Failed to save meeting: line 52")
     }
   };
 

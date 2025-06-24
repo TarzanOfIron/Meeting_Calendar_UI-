@@ -22,6 +22,10 @@ function App() {
     setMeetings((prev) => prev.filter((meeting) => meeting.id !== id));
   };
 
+  const addMeeting = (newMeeting: Meeting) => {
+    setMeetings(prev => [...prev, newMeeting])
+  }
+
   const loadMeetings = (loaded: Meeting[]) => {
     setMeetings(loaded);
   }
@@ -40,7 +44,7 @@ function App() {
           <Menu></Menu>
         </div>
         <div className="col col-6">
-          <Dashboard getNextMeetingId={getNextMeetingId}></Dashboard>
+          <Dashboard getNextMeetingId={getNextMeetingId} addMeeting={addMeeting}></Dashboard>
           <ListOfCreatedMeetings meetings={meetings} onRemoveMeeting={removeMeeting} onLoadMeetings={loadMeetings}></ListOfCreatedMeetings>
         </div>
       </div>
