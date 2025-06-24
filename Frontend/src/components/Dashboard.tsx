@@ -1,70 +1,53 @@
 import { useRef, type FormEvent } from "react";
 import type { Meeting } from "../App";
-import axios from 'axios';
-
+import axios from "axios";
 
 interface props {
-  addMeeting: (newMeeting: Meeting) => void;
   getNextMeetingId: () => number;
 }
 
-const Dashboard = ({ addMeeting, getNextMeetingId }: props) => {
+const Dashboard = ({getNextMeetingId }: props) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
   const priorityRef = useRef<HTMLSelectElement>(null);
   const participantsRef = useRef<HTMLTextAreaElement>(null);
 
-  const meeting = {
-    id: -1,
-    title: "",
-    date: "",
-    time: "",
-    priority: "",
-    participants: "",
-  };
-
   const handleEvent = async (event: FormEvent) => {
-
     event.preventDefault();
 
-    if (titleRef.current === null ) {
-      alert("Title is required")
-      return;
-    }
-    if (dateRef.current === null) {
-      alert("Date is required")
-      return;
-    }
-    if (timeRef.current === null) {
-      alert("Time is required")
-      return;
-    }
-    if (priorityRef.current === null) {
-      alert("Priority is required")
-      return;
-    }
-    if (participantsRef.current === null) {
-      alert("Participants is required")
-      return;
-    }
-  
-    meeting.id = getNextMeetingId();
-    meeting.title = titleRef.current.value;
-    meeting.date = dateRef.current.value;
-    meeting.time = timeRef.current.value;
-    meeting.priority = priorityRef.current.value as "Low" | "Medium" | "High";
-    meeting.participants = participantsRef.current.value;
 
-    //addMeeting(meeting);
 
+    if (
+    !titleRef.current ||
+    !dateRef.current ||
+    !timeRef.current ||
+    !priorityRef.current ||
+    !participantsRef.current
+  ) {
+    alert("All fields are required");
+    return;
+  }
+
+
+    const meeting = {
+      id: getNextMeetingId(),
+      title: titleRef.current.value,
+      date: dateRef.current.value,
+      time: timeRef.current.value,
+      priority: priorityRef.current.value as "Low" | "Medium" | "High",
+      participants: participantsRef.current.value,
+    };
+
+
+    console.log("went to shit")
     try {
-      await axios.post()
+      const response = await axios.post("http://localhost:8080/api/meetings", meeting);
+      console.log("Meeting saved:", response.data)
+    } catch(error) {
+      console.error("Failed to save meeting: fasz")
     }
-
   };
-
-  
 
   return (
     <div className="w-100 bg-white p-3">

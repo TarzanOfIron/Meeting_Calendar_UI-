@@ -18,13 +18,13 @@ function App() {
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [meetingId, setMeetingIdCounter] = useState(0);
 
-  const addMeeting = (newMeeting: Meeting) => {
-    setMeetings((prev) => [...prev, newMeeting]);
-  };
-
   const removeMeeting = (id: number) => {
     setMeetings((prev) => prev.filter((meeting) => meeting.id !== id));
   };
+
+  const loadMeetings = (loaded: Meeting[]) => {
+    setMeetings(loaded);
+  }
 
   const getNextMeetingId = () => {
     setMeetingIdCounter(meetingId + 1)
@@ -40,8 +40,8 @@ function App() {
           <Menu></Menu>
         </div>
         <div className="col col-6">
-          <Dashboard addMeeting={addMeeting} getNextMeetingId={getNextMeetingId}></Dashboard>
-          <ListOfCreatedMeetings meetings={meetings} onRemoveMeeting={removeMeeting}></ListOfCreatedMeetings>
+          <Dashboard getNextMeetingId={getNextMeetingId}></Dashboard>
+          <ListOfCreatedMeetings meetings={meetings} onRemoveMeeting={removeMeeting} onLoadMeetings={loadMeetings}></ListOfCreatedMeetings>
         </div>
       </div>
       <Footer></Footer>

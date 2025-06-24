@@ -1,13 +1,33 @@
+import { useEffect } from 'react';
 import type {Meeting} from '../App'
+import axios from "axios";
+
 
 interface meetingsProps {
   meetings: Meeting[];
   onRemoveMeeting: (id: number) => void;
+  onLoadMeetings: (loadedMeetings: Meeting[]) => void;
 }
 
 
-const ListOfCreatedMeetings = ({meetings, onRemoveMeeting}: meetingsProps) => {
+const ListOfCreatedMeetings = ({meetings, onRemoveMeeting, onLoadMeetings}: meetingsProps) => {
 
+  useEffect(() => {
+    const fetchMeetings = async() => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/meetings");
+        if (response.status === 200) {
+          console.log("Fetched Meetings: ", response.data);
+          onLoadMeetings(response.data)
+        } else {
+          console.error("Unexpected response status: ")
+        }
+      } catch (error) {
+        console.error("Error occured during the API call: ", error)
+      }
+    };
+    fetchMeetings();
+  }, [])
 
   return (
     <div className="bg-white mt-3 p-3 ">
