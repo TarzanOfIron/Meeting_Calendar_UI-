@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
-import type {Meeting} from '../App'
+import { useEffect } from "react";
+import type { Meeting } from "../App";
 import axios from "axios";
-
 
 interface meetingsProps {
   meetings: Meeting[];
@@ -9,28 +8,30 @@ interface meetingsProps {
   onLoadMeetings: (loadedMeetings: Meeting[]) => void;
 }
 
-
-const ListOfCreatedMeetings = ({meetings, onRemoveMeeting, onLoadMeetings}: meetingsProps) => {
-
+const Meetings = ({
+  meetings,
+  onRemoveMeeting,
+  onLoadMeetings,
+}: meetingsProps) => {
   useEffect(() => {
-    const fetchMeetings = async() => {
+    const fetchMeetings = async () => {
       try {
         const response = await axios.get("http://localhost:8080/api/meetings");
         if (response.status === 200) {
           console.log("Fetched Meetings: ", response.data);
           onLoadMeetings(response.data);
         } else {
-          console.error("Unexpected response status: ")
+          console.error("Unexpected response status: ");
         }
       } catch (error) {
-        console.error("Error occured during the API call: ", error)
+        console.error("Error occured during the API call: ", error);
       }
     };
     fetchMeetings();
-  }, [])
+  }, []);
 
   return (
-    <div className="bg-white mt-3 p-3 ">
+    <div className="bg-white  p-3 ">
       <h1>List of Created Meetings</h1>
       <table className="table table-striped">
         <thead>
@@ -52,8 +53,12 @@ const ListOfCreatedMeetings = ({meetings, onRemoveMeeting, onLoadMeetings}: meet
               <td>{meeting.time}</td>
               <td>{meeting.priority}</td>
               <td>
-                <i className={binIcon} onClick={() => onRemoveMeeting(meeting.id)}></i>
-                <i className={editIcon}></i></td>
+                <i
+                  className={binIcon}
+                  onClick={() => onRemoveMeeting(meeting.id)}
+                ></i>
+                <i className={editIcon}></i>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -62,10 +67,7 @@ const ListOfCreatedMeetings = ({meetings, onRemoveMeeting, onLoadMeetings}: meet
   );
 };
 
-export default ListOfCreatedMeetings;
+export default Meetings;
 
-
-
-
- const binIcon = "bi bi-trash me-2"
- const editIcon = "bi bi-pen"
+const binIcon = "bi bi-trash me-2";
+const editIcon = "bi bi-pen";

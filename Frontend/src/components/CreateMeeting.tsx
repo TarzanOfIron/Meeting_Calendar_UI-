@@ -7,7 +7,7 @@ interface props {
   addMeeting: (newMeeting: Meeting) => void;
 }
 
-const Dashboard = ({getNextMeetingId, addMeeting }: props) => {
+const CreateMeeting = ({ getNextMeetingId, addMeeting }: props) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
@@ -17,19 +17,16 @@ const Dashboard = ({getNextMeetingId, addMeeting }: props) => {
   const handleEvent = async (event: FormEvent) => {
     event.preventDefault();
 
-
-
     if (
-    !titleRef.current ||
-    !dateRef.current ||
-    !timeRef.current ||
-    !priorityRef.current ||
-    !participantsRef.current
-  ) {
-    alert("All fields are required");
-    return;
-  }
-
+      !titleRef.current ||
+      !dateRef.current ||
+      !timeRef.current ||
+      !priorityRef.current ||
+      !participantsRef.current
+    ) {
+      alert("All fields are required");
+      return;
+    }
 
     const meeting = {
       id: getNextMeetingId(),
@@ -40,24 +37,25 @@ const Dashboard = ({getNextMeetingId, addMeeting }: props) => {
       participants: participantsRef.current.value,
     };
 
-
-    console.log("went to shit")
+    console.log("went to shit");
     try {
-      const response = await axios.post("http://localhost:8080/api/meetings", meeting);
-      console.log("Meeting saved:", response.data)
+      const response = await axios.post(
+        "http://localhost:8080/api/meetings",
+        meeting
+      );
+      console.log("Meeting saved:", response.data);
       console.log("Line 48");
       addMeeting(response.data);
-      console.log("Line 50")
-    } catch(error) {
-      console.error("Failed to save meeting: line 52")
+      console.log("Line 50");
+    } catch (error) {
+      console.error("Failed to save meeting: line 52");
     }
   };
 
   return (
     <div className="w-100 bg-white p-3">
-      <h1 className="mb-3">Dashboard Body</h1>
       <form onSubmit={handleEvent}>
-        <div className="form-group my-1">
+        <div className="form-group mb-1">
           <label htmlFor="meetingTitle">Meeting Title</label>
           <input
             ref={titleRef}
@@ -117,4 +115,4 @@ const Dashboard = ({getNextMeetingId, addMeeting }: props) => {
   );
 };
 
-export default Dashboard;
+export default CreateMeeting;
